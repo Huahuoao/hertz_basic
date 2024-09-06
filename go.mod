@@ -5,6 +5,8 @@ go 1.23.0
 require (
 	github.com/cloudwego/hertz v0.9.2
 	google.golang.org/protobuf v1.34.2
+	gorm.io/driver/mysql v1.5.7
+	gorm.io/gorm v1.25.11
 )
 
 require (
@@ -31,6 +33,4 @@ require (
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	gorm.io/driver/mysql v1.5.7 // indirect
-	gorm.io/gorm v1.25.11 // indirect
 )
