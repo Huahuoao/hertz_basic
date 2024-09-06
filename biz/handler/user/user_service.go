@@ -7,8 +7,10 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	mysql "github.com/huahuoao/hertz_base/biz/dal/mysql/user"
 	"github.com/huahuoao/hertz_base/biz/model/app/user"
 	result "github.com/huahuoao/hertz_base/biz/model/common"
+	"github.com/huahuoao/hertz_base/biz/model/do"
 )
 
 // Register .
@@ -23,5 +25,8 @@ func Register(ctx context.Context, c *app.RequestContext) {
 	}
 	resp := new(user.UserRegisterResp)
 	resp.Msg = "hello huahuo!"
+	mysql.CreateUser(&do.User{
+		Name: req.Username,
+	})
 	c.JSON(consts.StatusOK, result.New().Success(resp))
 }
