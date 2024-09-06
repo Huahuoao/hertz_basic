@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option go_package = "common";
+
+message User {
+    int64 id = 1; // GORM Model ID, corresponds to gorm.Model's ID field
+    string user_name = 2; // UserName field
+    string password = 3; // Password field
+    int64 gender = 4; // Gender field
+    int64 age = 5; // Age field
+    string introduce = 6; // Introduce field
+  }

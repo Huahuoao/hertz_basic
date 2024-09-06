@@ -1,4 +1,4 @@
-package result
+package common
 
 import "github.com/cloudwego/hertz/pkg/protocol/consts"
 
@@ -8,7 +8,7 @@ type Result struct {
 	Data interface{} `json:"data"`
 }
 
-func New() *Result {
+func NewResult() *Result {
 	return &Result{}
 }
 func (r *Result) Success(data interface{}) *Result {

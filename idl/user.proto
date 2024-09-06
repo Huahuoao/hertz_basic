@@ -6,6 +6,7 @@ package user;
 option go_package = "app/user";
 
 import "api.proto";
+import "common.proto";
 
 message UserRegisterReq {
    string username = 1;
@@ -15,9 +16,19 @@ message UserRegisterReq {
 message UserRegisterResp {
    string msg = 1;
 }
+message UserListReq {
+
+}
+message UserListResp {
+   repeated User users = 1;
+}
 
 service UserService {
    rpc Register(UserRegisterReq) returns(UserRegisterResp) {
       option (api.post) = "/user/register";  
     }
+
+   rpc ListUsers(UserListReq) returns(UserListResp) {
+      option (api.get) = "/user/list";
+   }
 }
