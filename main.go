@@ -4,11 +4,12 @@ package main
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
+	"github.com/huahuoao/hertz_base/biz/dal"
 )
 
 func main() {
 	h := server.Default()
-
 	register(h)
+	dal.Init()
 	h.Spin()
 }

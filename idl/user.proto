@@ -3,7 +3,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "huahuo/user";
+option go_package = "app/user";
 
 import "api.proto";
 

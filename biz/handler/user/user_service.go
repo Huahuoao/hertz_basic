@@ -7,8 +7,8 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
-	result "github.com/huahuoao/hertz_base/biz/model/huahuo/common"
-	user "github.com/huahuoao/hertz_base/biz/model/huahuo/user"
+	"github.com/huahuoao/hertz_base/biz/model/app/user"
+	result "github.com/huahuoao/hertz_base/biz/model/common"
 )
 
 // Register .
@@ -23,5 +23,5 @@ func Register(ctx context.Context, c *app.RequestContext) {
 	}
 	resp := new(user.UserRegisterResp)
 	resp.Msg = "hello huahuo!"
-	c.JSON(consts.StatusOK, result.New().SuccessWithMsg("注册成功", resp))
+	c.JSON(consts.StatusOK, result.New().Success(resp))
 }
