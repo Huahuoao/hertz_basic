@@ -29,4 +29,5 @@ func Register(ctx context.Context, c *app.RequestContext) {
 		Name: req.Username,
 	})
 	c.JSON(consts.StatusOK, result.New().Success(resp))
+
 }
