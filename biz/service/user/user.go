@@ -7,7 +7,7 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	mysql "github.com/huahuoao/hertz_base/biz/dal/mysql/user"
 	"github.com/huahuoao/hertz_base/biz/model/app/user"
-	"github.com/huahuoao/hertz_base/biz/model/common"
+	consts "github.com/huahuoao/hertz_base/biz/model/const"
 	pack "github.com/huahuoao/hertz_base/biz/pack/user"
 	"github.com/huahuoao/hertz_base/biz/util"
 	"gorm.io/gorm"
@@ -35,9 +35,12 @@ func (s *UserService) UserRegister(req *user.UserRegisterReq) (*user.UserRegiste
 	}
 
 	// Create the user
-	err = mysql.CreateUser(&common.User{
-		UserName: req.Username,
-		Password: util.MD5Hash(req.Password),
+	err = mysql.CreateUser(&mysql.User{
+		UserName:  req.Username,
+		Password:  util.MD5Hash(req.Password),
+		Gender:    consts.DefaultGender,
+		Age:       consts.DefaultAge,
+		Introduce: consts.DefaultIntroduce,
 	})
 	if err != nil {
 		return nil, err
@@ -56,5 +59,21 @@ func (s *UserService) ListUsers(req *user.UserListReq) (*user.UserListResp, erro
 	}
 	users := pack.PackUserList(dbUsers)
 	resp.Users = users
+	return resp, nil
+}
+
+func (s *UserService) Login(req *user.UserLoginReq) (*user.UserLoginResp, error) {
+	dbUser, err := mysql.GetUserByUsername(req.Username)
+	if err != nil {
+		return nil, err
+	}
+	if dbUser == nil {
+		return nil, fmt.Errorf("用户名不存在")
+	}
+	if dbUser.Password != util.MD5Hash(req.Password) {
+		return nil, fmt.Errorf("密码错误")
+	}
+	resp := &user.UserLoginResp{}
+	resp.Token = "token"
 	return resp, nil
 }

@@ -23,6 +23,14 @@ message UserListResp {
    repeated User users = 1;
 }
 
+message UserLoginReq{
+   string username = 1;
+   string password = 2;
+}
+
+message UserLoginResp{
+   string token = 1;
+}
 service UserService {
    rpc Register(UserRegisterReq) returns(UserRegisterResp) {
       option (api.post) = "/user/register";  
@@ -30,5 +38,9 @@ service UserService {
 
    rpc ListUsers(UserListReq) returns(UserListResp) {
       option (api.get) = "/user/list";
+   }
+
+   rpc Login(UserLoginReq) returns(UserLoginResp) {
+      option (api.post) = "/user/login";
    }
 }

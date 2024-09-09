@@ -2,7 +2,6 @@ package mysql
 
 import (
 	"github.com/huahuoao/hertz_base/biz/dal/mysql"
-	"github.com/huahuoao/hertz_base/biz/model/common"
 	"gorm.io/gorm"
 )
 
@@ -28,7 +27,7 @@ func UserGender(gender int64) string {
 	}
 }
 
-func CreateUser(user *common.User) error {
+func CreateUser(user *User) error {
 	return mysql.DB.Create(user).Error
 }
 
